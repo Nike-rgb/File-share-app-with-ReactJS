@@ -77,7 +77,7 @@ export default function Chat (props) {
     const msgInputRef = useRef();
     const [unreadMsgs, setUnreadMsgs] = useState(0);
     useEffect(() => {
-        socket = io('http://127.1.1.1:4000');
+        socket = io(process.env.REACT_APP_API_URL);
         socket.emit('join', uuid);
         return () => {
             socket.disconnect();

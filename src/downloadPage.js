@@ -82,7 +82,7 @@
                                     <ListItemText classes={{primary:classes.primary, secondary:classes.secondary}} primary={file.fileOriginalName} secondary={ (file.fileSize / 2 ** 20).toFixed(4) + " MB"} />
                                     <ListItemAvatar>
                                         <IconButton>
-                                            <a href={'http://127.1.1.1:4000/api/download/' + uuid + '/' + file.fileName}>
+                                            <a href={process.env.REACT_APP_API_URL + '/api/download/' + uuid + '/' + file.fileName}>
                                                 <GetAppIcon style={{width:30, height:30, fill:'#1b95bd',}} />
                                             </a>
                                         </IconButton>
