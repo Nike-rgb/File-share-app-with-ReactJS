@@ -1,7 +1,10 @@
 # File sharing app UI with ReactJs
 
 This is continuation of my file sharing PWA. 
-This is the React Frontend
+
+
+This is the React Frontend.
+
 Go to my repository [FileShare-API](https://github.com/Nike-rgb/FileShare-API.git) to get access to the backend.
 
 **Features**
