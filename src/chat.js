@@ -99,14 +99,22 @@ export default function Chat(props) {
     if (props.isReceiver) {
       socket.emit("isReceiverOnline", uuid);
       socket.on("isSenderOnline", () => {
-        if (activeStatus !== "Online") socket.emit("isReceiverOnline", uuid);
-        setActiveStatus("Online");
+        if (activeStatus !== "Online") {
+          socket.emit("isReceiverOnline", uuid);
+          setActiveStatus("Online");
+          props.setOpenOnlineMsg(true);
+          setTimeout(() => props.setOpenOnlineMsg(false), 3000);
+        }
       });
     } else {
       socket.emit("isSenderOnline", uuid);
       socket.on("isReceiverOnline", () => {
-        if (activeStatus !== "Online") socket.emit("isSenderOnline", uuid);
-        setActiveStatus("Online");
+        if (activeStatus !== "Online") {
+          socket.emit("isSenderOnline", uuid);
+          setActiveStatus("Online");
+          props.setOpenOnlineMsg(true);
+          setTimeout(() => props.setOpenOnlineMsg(false), 3000);
+        }
       });
     }
     socket.on("isOffline", () => {
@@ -118,7 +126,7 @@ export default function Chat(props) {
       socket.off("isReceiverOnline");
       socket.off("isSenderOnline");
     };
-  }, [open, activeStatus, props.isReceiver, uuid]);
+  }, [props, open, activeStatus, props.isReceiver, uuid]);
 
   useEffect(() => {
     if (!unreadMsgs) document.title = "NepalShares | नेपाली बाट नेपाली कै लागि";

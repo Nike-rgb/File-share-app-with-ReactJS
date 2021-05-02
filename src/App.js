@@ -9,6 +9,8 @@ import Sidebar from "./sidebar";
 import QrScan from "./Qrscan";
 import { makeStyles } from "@material-ui/core/styles";
 import SettingsOverscanIcon from "@material-ui/icons/SettingsOverscan";
+import GitHubIcon from "@material-ui/icons/GitHub";
+import IconButton from "@material-ui/core/IconButton";
 
 const useStyles = makeStyles((theme) => ({
   body: {
@@ -16,6 +18,12 @@ const useStyles = makeStyles((theme) => ({
     height: "100%",
     position: "absolute",
     width: "100%",
+  },
+  githubLink: {
+    position: "absolute",
+    top: 70,
+    right: 5,
+    color: theme.palette.secondary.text,
   },
   instruction: {
     position: "absolute",
@@ -43,6 +51,7 @@ function App(props) {
   const [uploaded, setUploaded] = useState(
     dataFromDb ? dataFromDb.status : false
   );
+  const [openOnlineMsg, setOpenOnlineMsg] = useState(false);
   const [data, setData] = useState(dataFromDb ? dataFromDb.data : {});
 
   return (
@@ -53,6 +62,12 @@ function App(props) {
           msg={openToast}
         />
       )}
+      {openOnlineMsg && (
+        <UploadToast
+          styles={{ backgroundColor: "#41b9b1" }}
+          msg="User is online."
+        />
+      )}
       <RouterSwitch>
         <Route exact path="/">
           <Header
@@ -60,6 +75,7 @@ function App(props) {
             setScannerOpen={setScannerOpen}
             uploaded={uploaded}
             dark={props.dark}
+            setOpenOnlineMsg={setOpenOnlineMsg}
             changeTheme={props.changeTheme}
             uuid={data.uuid}
             showChat={uploaded}
@@ -88,10 +104,22 @@ function App(props) {
             data={data}
             isReceiver={true}
             showChat={true}
+            setOpenOnlineMsg={setOpenOnlineMsg}
           />
           <DownloadPage />
         </Route>
       </RouterSwitch>
+      <div className={classes.githubLink}>
+        Fork this project on Github.
+        <a
+          target="_blank"
+          href="https://github.com/Nike-rgb/File-share-app-with-ReactJS"
+        >
+          <IconButton color="primary">
+            <GitHubIcon />
+          </IconButton>
+        </a>
+      </div>
       {!uploaded && (
         <div className={classes.instruction}>
           Have a QR code from the sender? Click on{" "}

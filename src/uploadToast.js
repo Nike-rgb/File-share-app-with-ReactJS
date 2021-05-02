@@ -2,6 +2,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 import ErrorIcon from "@material-ui/icons/Error";
+import MailOutlineIcon from "@material-ui/icons/MailOutline";
 import Typography from "@material-ui/core/Typography";
 
 const toast = {
@@ -53,8 +54,9 @@ export default function UploadToast(props) {
         </Paper>
       )}
       {props.status !== "error" && (
-        <Paper elevation={1} className={classes.success}>
-          <CheckCircleIcon className={classes.icon} />
+        <Paper elevation={1} style={props.styles} className={classes.success}>
+          {!props.styles && <CheckCircleIcon className={classes.icon} />}
+          {props.styles && <MailOutlineIcon className={classes.icon} />}
           <Typography
             variant="caption"
             className={classes.text}

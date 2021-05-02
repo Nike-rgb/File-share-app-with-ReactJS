@@ -71,7 +71,13 @@ export default function Header(props) {
               inputProps={{ "aria-label": "secondary checkbox" }}
             />
           </Tooltip>
-          {props.showChat && <Chat isReceiver={props.isReceiver} uuid={uuid} />}
+          {props.showChat && (
+            <Chat
+              setOpenOnlineMsg={props.setOpenOnlineMsg}
+              isReceiver={props.isReceiver}
+              uuid={uuid}
+            />
+          )}
           {!props.uploaded && (
             <a href="/" style={{ color: "white", textDecoration: "none" }}>
               <Button color="inherit">Home</Button>
