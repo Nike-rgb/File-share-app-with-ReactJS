@@ -1,0 +1,15 @@
+{
+  "short_name": "NepalShares",
+  "name": "NepalShares | नेपाली बाट नेपाली कै लागि",
+  "icons": [
+    {
+      "src": "images/logo.png",
+      "type": "image/png",
+      "sizes": "1024x1024"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#9a30b5",
+  "background_color": "#ffffff"
+}

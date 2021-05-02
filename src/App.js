@@ -113,6 +113,7 @@ function App(props) {
         Fork this project on Github.
         <a
           target="_blank"
+          rel="noreferrer"
           href="https://github.com/Nike-rgb/File-share-app-with-ReactJS"
         >
           <IconButton color="primary">
