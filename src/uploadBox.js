@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("xs")]: {
       width: "90%",
       height: 200,
-      marginTop: "35%",
+      marginTop: "45%",
     },
   },
   uploadBtnContainer: {

@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("xs")]: {
       width: "90%",
       height: 200,
-      marginTop: "35%",
+      marginTop: "45%",
     },
   },
   downloadInstruction: {
@@ -95,6 +95,7 @@ const useStyles = makeStyles((theme) => ({
     height: 200,
     display: "inline-block",
     position: "relative",
+    zIndex: 2,
   },
 }));
 

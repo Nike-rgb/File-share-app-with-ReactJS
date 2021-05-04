@@ -73,7 +73,13 @@ export default function QrScan(props) {
             delay={300}
             onError={handleError}
             onScan={handleScan}
-            facingMode="rear"
+            constraints={{
+              video: {
+                facingMode: "environment",
+                cursor: "never",
+              },
+              audio: false,
+            }}
             onLoad={() => setReady(true)}
             style={{ width: "100%", height: "100%", objectFit: "cover" }}
           />

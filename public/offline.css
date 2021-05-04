@@ -1,0 +1,54 @@
+html,
+body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+h1 {
+  color: #9a30b5;
+  position: relative;
+  top: 30%;
+  width: 70%;
+  margin: auto;
+  text-align: center;
+}
+
+#btn {
+  padding: 10px;
+  color: white;
+  background: #365dcc;
+  border-radius: 10px;
+  text-align: center;
+  border: 0;
+}
+
+p {
+  position: absolute;
+  width: 80%;
+  left: 10%;
+  top: 100%;
+  font-size: 16px;
+}
+
+.bubble {
+  width: 60px;
+  height: 60px;
+  padding-top: 18px;
+  border-radius: 50%;
+  box-sizing: border-box;
+  position: absolute;
+  text-align: center;
+  color: white;
+  background-color: #365dcc;
+  animation: bubble 5s infinite;
+  transition: opacity 2s ease;
+}
+
+@keyframes bubble {
+  100% {
+    transform: translateY(-350px);
+    opacity: 0;
+  }
+}

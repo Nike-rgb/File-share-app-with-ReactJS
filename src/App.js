@@ -38,6 +38,10 @@ const useStyles = makeStyles((theme) => ({
       fontSize: 14,
     },
   },
+  onlineToast: {
+    backgroundColor: theme.palette.secondary.onlineToast,
+    color: "white",
+  },
 }));
 
 const localDb = window.localStorage;
@@ -63,10 +67,7 @@ function App(props) {
         />
       )}
       {openOnlineMsg && (
-        <UploadToast
-          styles={{ backgroundColor: "#41b9b1" }}
-          msg="User is online."
-        />
+        <UploadToast className={classes.onlineToast} msg="User is online." />
       )}
       <RouterSwitch>
         <Route exact path="/">
@@ -96,6 +97,20 @@ function App(props) {
             />
           )}
           {uploaded && <Sidebar data={data} />}
+          {!uploaded && (
+            <div className={classes.instruction}>
+              Have a QR code from the sender? Click on{" "}
+              <SettingsOverscanIcon
+                style={{
+                  display: "inline-block",
+                  position: "relative",
+                  top: 6,
+                  padding: "0 3px",
+                }}
+              />{" "}
+              icon on top.
+            </div>
+          )}
         </Route>
         <Route exact path="/files/:uuid">
           <Header
@@ -121,20 +136,6 @@ function App(props) {
           </IconButton>
         </a>
       </div>
-      {!uploaded && (
-        <div className={classes.instruction}>
-          Have a QR code from the sender? Click on{" "}
-          <SettingsOverscanIcon
-            style={{
-              display: "inline-block",
-              position: "relative",
-              top: 6,
-              padding: "0 3px",
-            }}
-          />{" "}
-          icon on top.
-        </div>
-      )}
       {scannerOpen && <QrScan setScannerOpen={setScannerOpen} />}
     </div>
   );

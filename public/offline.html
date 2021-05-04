@@ -5,14 +5,73 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="New generation file sharing features" />
+    <link rel="icon" type="image/png" href="./images/offline.png" />
     <title>Oops, you are offline. | NepalShares</title>
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
     />
+    <link rel="stylesheet" href="offline.css" />
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div>You are offline. Please connect to the internet.</div>
+    <h1>
+      <div class="image">
+        <img src="images/offline.png" />
+      </div>
+      Oops, You are offline
+      <p>Connect to the internet, or tap/click on the screen to talk to me.</p>
+      <button id="btn">Refresh</button>
+    </h1>
+    <script>
+      function createBubble(text, position) {
+        let { X, Y } = position;
+        let bubble = document.createElement("div");
+        bubble.className = "bubble";
+        bubble.innerText = text;
+        bubble.style.top = Y + "px";
+        bubble.style.left = X + "px";
+        bubble.style.transform = "translate(-50%, -50%)";
+        document.body.append(bubble);
+        setTimeout(() => {
+          bubble.remove();
+        }, 4000);
+      }
+
+      const msgs = [
+        ["You", "are", "nice"],
+        ["Hi", "there"],
+        ["Today", "is", "a", "good", "day"],
+        ["I", "am", "loving", "talking", "to", "you"],
+        ["You", "are", "a", "mood"],
+        ["Hope", "to", "see", "you", "again"],
+        ["Have", "a", "good", "day"],
+      ];
+
+      let msg = [],
+        count = 0,
+        prevRandom;
+
+      document.body.addEventListener("click", (event) => {
+        let X = event.clientX,
+          Y = event.clientY;
+        if (count == msg.length) {
+          let random = Math.floor(Math.random() * msgs.length);
+          while (random == prevRandom) {
+            random = Math.floor(Math.random() * msgs.length);
+          }
+          prevRandom = random;
+          msg = msgs[random];
+          count = 0;
+        }
+        createBubble(msg[count], { X, Y });
+        count++;
+      });
+
+      btn.onclick = (e) => {
+        e.stopPropagation();
+        location.href = "https://nepalshares101.web.app";
+      };
+    </script>
   </body>
 </html>

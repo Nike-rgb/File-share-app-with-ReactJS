@@ -1,5 +1,10 @@
 const CACHE_NAME = "markups";
-const urlsToCache = ["index.html", "offline.html"];
+const urlsToCache = [
+  "index.html",
+  "offline.html",
+  "offline.css",
+  "images/offline.png",
+];
 
 const self = this;
 
@@ -16,6 +21,10 @@ self.addEventListener("fetch", (event) => {
   event.respondWith(
     caches.match(event.request).then(() => {
       return fetch(event.request).catch((err) => {
+        let url = event.request.url;
+        if (url.endsWith(".css")) return caches.match("offline.css");
+        if (url.endsWith(".jpg") || url.endsWith(".png"))
+          return caches.match("images/offline.png");
         return caches.match("offline.html");
       });
     })
